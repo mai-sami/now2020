@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title','Task List')
-    
- 
+
+
 @section('content')
 <div class="col-sm-offset-2 col-sm-8">
         <div class="panel panel-default">
@@ -12,6 +12,15 @@
             <div class="panel-body">
                 <!-- Display Validation Errors -->
                 <!-- New Task Form -->
+                @if ($errors->any())
+                <div class="alter alter-danger">
+                    <ul>
+                 @foreach ($errors->all() as $error)
+                     <li>{{ $error}}<li>
+                    @endforeach
+                    </ul>
+                </div>
+                @endif
                 <form action="store" method="POST" class="form-horizontal">
                       @csrf
                     <!-- Task Name -->
@@ -61,16 +70,15 @@
                                                 <i class="fa fa-btn fa-trash"></i>Delete
                                             </button>
                                             <td>
-                                                    <a href="/tasks/index/{{$task->id}}/edit" class="btn btn-xs btn-info">Edit</a>
-                                              
-                                              
-                                            </td>
+                                                <a href="/tasks/index/{{$task->id}}/edit" class="btn btn-xs btn-info">Edit</a>
+
+                                        </td>
                                         </form>
                                     </td>
                                 </tr>
-                                
+
                             @endforeach
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -78,4 +86,3 @@
     </div>
 @endsection
 
- 
