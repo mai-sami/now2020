@@ -8,7 +8,7 @@ class TaskController extends Controller
 {
    public function index(){
    // $tasks = DB::table('tasks')->get();
-  $tasks = Task::orderBy('created_at')->get();
+ $tasks = Task::orderBy('created_at')->get();
     return view('tasks.index',compact('tasks'));
    }
   public function show($id){
@@ -18,14 +18,7 @@ class TaskController extends Controller
 
   }
 public function store(request $request){
-  // dd($request);
- // DB::table('tasks')->insert([
-     // 'name' => $request->name,
-    // 'created_at'=>now(),
-    // 'update_at'=>now(),
-  //  ]);
-
-  $request->validate(['name'=>'required|min:10|max:255']);
+    $request->validate(['name'=>'required|max:255']);
       $task=new Task();
       $task->name=$request->name;
       $task->save();
@@ -47,7 +40,7 @@ public function edit($id){
    return view('tasks.edit',compact('tasks'));
    //,compact('tasks')
 }
-public function update(Request $request, tasks $tasks ){
+public function update(Request $request, Task $tasks ){
   //  dd(20);
   //  $tasks->update($request->all());
     return view('tasks.index',compact('tasks'));

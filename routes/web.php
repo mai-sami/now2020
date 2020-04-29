@@ -17,20 +17,19 @@ use Illuminate\Support\Facades\Route;
 
     Route::post('/tasks/task/{id}','TaskController@show');
 
-Route::post('/tasks/store','TaskController@store');
+Route::post('/tasks/storeToTaskController','TaskController@store')->name('store');
 //Route::delete('delete/{id}','TaskController@destroy');
 Route::post('/tasks/edit/{id}','TaskController@update');
  Route::resource('/tasks/index', 'TaskController');
 Route::delete('/tasks/index/delete/{id}','TaskController@destroy');
 
+///Route::put('/tasks/edit/{id}','TaskController@edit');
+//Route::patch('/tasks/update/{id}','TaskController@update');
 
 
 
 
 
+\Auth::routes();
 
- // $tasks=['task1','task2','task3'];
- // $tasks = DB::table('webs')->get();
-  // return $tasks;
-// return view('welcome',compact('tasks'));
-//});
+Route::get('/home', 'HomeController@index')->name('home');
